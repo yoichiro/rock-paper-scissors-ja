@@ -1,0 +1,54 @@
+html {
+  display: flex;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex: 1;
+  margin: 0;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.container {
+  width: 100%;
+  text-align: center;
+}
+
+#welcome {
+  display: block;
+}
+
+#welcome img {
+  flex: 1;
+  animation: rotate-anime 3s linear infinite;
+}
+
+@keyframes rotate-anime {
+  0%  {transform: rotate(0);}
+  100%  {transform: rotate(360deg);}
+}
+
+#vs {
+  display: none;
+}
+
+#result {
+  display: none;
+}
+
+.result-row {
+  display: flex;
+}
+
+.result-row div {
+  flex: 1;
+}
+
+#message {
+  display: none;
+  font-size: 48px;
+}
