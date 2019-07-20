@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const {
   dialogflow,
-  ImmersiveResponse
+  HtmlResponse
 } = require('actions-on-google');
 
 const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
@@ -14,8 +14,8 @@ const app = dialogflow({
 
 app.intent('Show - yes', conv => {
   conv.ask('わかりました。どの手を出しますか？グー？チョキ？それともパー？');
-  conv.ask(new ImmersiveResponse({
-    state: {
+  conv.ask(new HtmlResponse({
+    data: {
       scene: 'restart'
     }
   }));
@@ -64,9 +64,9 @@ app.intent('Show', (conv, param) => {
       <p>もう一度遊びますか？</p>
     </speak>`;
   conv.ask(ssml);
-  // 画面を更新するための情報を持つImmersiveResponseオブジェクト。
-  conv.ask(new ImmersiveResponse({
-    state: {
+  // 画面を更新するための情報を持つHtmlResponseオブジェクト。
+  conv.ask(new HtmlResponse({
+    data: {
       scene: 'result',
       userChoice,
       actionChoice,
@@ -77,7 +77,7 @@ app.intent('Show', (conv, param) => {
 
 app.intent('Default Welcome Intent', conv => {
   conv.ask('どの手を出しますか？グー？チョキ？それともパー？');
-  conv.ask(new ImmersiveResponse({
+  conv.ask(new HtmlResponse({
     url: `https://${firebaseConfig.projectId}.firebaseapp.com/`
   }));
 });
